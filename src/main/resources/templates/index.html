@@ -23,8 +23,10 @@
 					value="Submit" type="Submit">Check Weather</button>
 			</div>
 		</form>
+		<span th:if="${data != null && data.name == 'error'}"> Invalid
+			zip code. Weather data not found.</span>
 		<hr>
-		<div th:if="${data != null}">
+		<div th:if="${data != null && data.name != 'error'}">
 			<h3>
 				Forecast for <span th:text="${data.name}"></span>
 			</h3>
@@ -35,7 +37,10 @@
 						<h3>
 							Forecast for <span th:text="${data.name}"></span>
 						</h3>
-						<p><b>Temperature:</b> <span th:text="${data.main.get('temp')}"></span> &#176;F</p>
+						<p>
+							<b>Temperature:</b> <span th:text="${data.main.get('temp')}"></span>
+							&#176;F
+						</p>
 						<p>
 							<b>Cloud Cover:</b> <span th:text="${data.clouds.get('all')}"></span>%
 						</p>
